@@ -10,22 +10,24 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class PessoaFisica implements Serializable {
+public class PF implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String CPF;
 	private String fullName;
 
+	
 	@JsonIgnore
 	@OneToOne(mappedBy = "pf", cascade = CascadeType.ALL)
-	private Conta conta;
+	private Account conta;
 
-	public PessoaFisica() {
+	
+	public PF() {
 		super();
 	}
 	
-	public PessoaFisica(String cPF, String fullName) {
+	public PF(String cPF, String fullName) {
 		super();
 		this.CPF = cPF;
 		this.fullName = fullName;;
@@ -47,15 +49,13 @@ public class PessoaFisica implements Serializable {
 		this.fullName = fullName;
 	}
 
-	public Conta getConta() {
+	public Account getConta() {
 		return conta;
 	}
 
-	public void setConta(Conta conta) {
+	public void setConta(Account conta) {
 		this.conta = conta;
 	}
 
-
-	
 
 }

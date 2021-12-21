@@ -6,25 +6,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.donus.codechallenge.entities.PessoaFisica;
-import com.donus.codechallenge.repositories.PessoaFisicaRepository;
+import com.donus.codechallenge.entities.PF;
+import com.donus.codechallenge.repositories.PFRepository;
 
 @Service
 public class PessoaFisicaService {
 
 	@Autowired
-	private PessoaFisicaRepository repository;
+	private PFRepository repository;
 	
-	public List<PessoaFisica> findAll(){
+	public List<PF> findAll(){
 		return repository.findAll();
 	}
 	
-	public PessoaFisica findById(String id) {
-		Optional<PessoaFisica> obj = repository.findById(id);
+	public PF findById(String id) {
+		Optional<PF> obj = repository.findById(id);
 		return obj.get();
 	}
 	
-	public PessoaFisica insert(PessoaFisica obj) {
+	public PF insert(PF obj) {
 		return repository.save(obj);
 	}
 		

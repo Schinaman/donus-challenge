@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class PFExceptionHandler {
+public class BankExceptionHandler {
 		
-		@ExceptionHandler(value = {PFRequestException.class})
-		public ResponseEntity<Object> handleException(PFRequestException e){
+		@ExceptionHandler(value = {BankRequestException.class})
+		public ResponseEntity<Object> handleException(BankRequestException e){
 			HttpStatus forbidden = HttpStatus.FORBIDDEN;
 			
-			PFException dnaException = new PFException(e.getMessage(),forbidden);
+			BankException dnaException = new BankException(e.getMessage(),forbidden);
 			return new ResponseEntity<>(dnaException,forbidden);
 		}
 }

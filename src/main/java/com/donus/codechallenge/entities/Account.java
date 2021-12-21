@@ -1,25 +1,35 @@
 package com.donus.codechallenge.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+
 @Entity
-public class Conta implements Serializable{
+public class Account implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String CPF;
 	private double balance;
  
+	
 	@OneToOne
 	@MapsId
-	private PessoaFisica pf;
+	private PF pf;
+	
+	
+	@OneToMany(mappedBy = "account")
+	private List<Transaction> transactions = new ArrayList<>();
 	
 	// permitido apenas 1 conta por pessoa //OK
 	// checa no banco de dados se o cpf já está cadastrado //OK
@@ -29,15 +39,14 @@ public class Conta implements Serializable{
 	// As transferências entre contas são gratuitas e ilimitadas;
 
 	
-	public Conta() {
+	public Account() {
 		super();
 	}
 
 	
-	public Conta(String cPF, double balance, PessoaFisica pf) {
+	public Account(String cPF, PF pf) {
 		super();
 		CPF = cPF;
-		this.balance = 1000.00;
 		this.pf = pf;
 	}
 	
@@ -58,23 +67,32 @@ public class Conta implements Serializable{
 	}
 
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
+//	public void setBalance(double balance) {
+//		this.balance = balance;
+//	}
 
 	
 
-	public PessoaFisica getPf() {
+	public PF getPf() {
 		return pf;
 	}
 
 
-	public void setPf(PessoaFisica pf) {
+	public void setPf(PF pf) {
 		this.pf = pf;
 	}
 
 
-	public void Transferir(Conta cc, double valor) {
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+
+	public void Deposita(double valor) {
+		this.balance += valor;
+	}
+
+	public void Transferir(Account cc, double valor) {
 		//Conta não pode ser a mesma que está transferindo;
 		this.balance -= valor;
 		cc.balance += valor;

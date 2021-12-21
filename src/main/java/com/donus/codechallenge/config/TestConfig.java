@@ -7,32 +7,39 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.donus.codechallenge.entities.Conta;
-import com.donus.codechallenge.entities.PessoaFisica;
-import com.donus.codechallenge.repositories.ContaRepository;
-import com.donus.codechallenge.repositories.PessoaFisicaRepository;
+import com.donus.codechallenge.entities.Account;
+import com.donus.codechallenge.entities.PF;
+import com.donus.codechallenge.entities.Transaction;
+import com.donus.codechallenge.repositories.AccountRepository;
+import com.donus.codechallenge.repositories.PFRepository;
+import com.donus.codechallenge.repositories.TransactionRepository;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
-	private ContaRepository contaRepository;
+	private AccountRepository contaRepository;
 	@Autowired
-	private PessoaFisicaRepository pfRepository;
-
+	private PFRepository pfRepository;
+	@Autowired
+	private TransactionRepository transactionRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 	
-		PessoaFisica pf1 = new PessoaFisica ("3732297850", "Guiga");
-		PessoaFisica pf2 = new PessoaFisica("3732297851", "Juquinha");
+		PF pf1 = new PF ("37322979850", "Guiga");
+		PF pf2 = new PF("37322979851", "Juquinha");
 		pfRepository.saveAll(Arrays.asList(pf1,pf2));
-		
-		
-		Conta cc1 = new Conta("3732297850", 0, pf1);
-		Conta cc2 = new Conta("3732297850", 0, pf2);
+				
+		Account cc1 = new Account("37322979850", pf1);
+		Account cc2 = new Account("37322979851", pf2);
 		contaRepository.saveAll(Arrays.asList(cc1,cc2));
 
+		Transaction tr1 = new Transaction(null, cc2);
+		Transaction tr2 = new Transaction(null, cc2);
+		transactionRepository.saveAll(Arrays.asList(tr1,tr2));
+		
 	}
 	
 }

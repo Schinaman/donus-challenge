@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,34 +14,37 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.donus.codechallenge.entities.BankRequestException;
 import com.donus.codechallenge.entities.Account;
+import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.entities.PF;
 import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.repositories.AccountRepository;
 import com.donus.codechallenge.repositories.TransactionRepository;
 
 @Service
-public class ContaService {
+public class TransacaoService {
 
 	@Autowired
-	private AccountRepository repository;
+	private TransactionRepository repository;
 	
-	@Autowired
-	private TransactionRepository transacaoRepository;
 	
-	public List<Account> findAll(){
+	public List<Transaction> findAll(){
 		return repository.findAll();
 	}
 	
-	public Account findById(String id) {
-		Optional<Account> obj = repository.findById(id);
+	public Transaction findById(Long id) {
+		Optional<Transaction> obj = repository.findById(id);
 		return obj.get();
 	}
 	
-	public Account insert(Account obj) {
-		if (obj.getBalance() != 0.0) throw new BankRequestException("Use a função 'deposita' ou 'transfere' para alterar o saldo da conta");	
+	public Transaction insert(Transaction obj) {	
 		return repository.save(obj);
 	}
 
-	
+//	
+//	public Transaction deposita(Transaction obj) {
+//		obj.deposita(obj.getConta(), obj.getValor());
+//		return obj;
+//	}
+
 	
 }
