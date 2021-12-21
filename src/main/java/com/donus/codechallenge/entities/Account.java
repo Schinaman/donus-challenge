@@ -31,6 +31,11 @@ public class Account implements Serializable{
 	@OneToMany(mappedBy = "account")
 	private List<Transaction> transactions = new ArrayList<>();
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
+	private List<Deposit> deposits = new ArrayList<>();
+	
+	
 	// permitido apenas 1 conta por pessoa //OK
 	// checa no banco de dados se o cpf já está cadastrado //OK
 	// Não aceitamos valores negativos nas contas;
@@ -52,6 +57,8 @@ public class Account implements Serializable{
 	
 	
 	
+
+
 	public String getCPF() {
 		return CPF;
 	}
@@ -67,11 +74,10 @@ public class Account implements Serializable{
 	}
 
 
-//	public void setBalance(double balance) {
-//		this.balance = balance;
-//	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
-	
 
 	public PF getPf() {
 		return pf;
@@ -85,6 +91,11 @@ public class Account implements Serializable{
 
 	public List<Transaction> getTransactions() {
 		return transactions;
+	}
+
+
+	public List<Deposit> getDeposits() {
+		return deposits;
 	}
 
 

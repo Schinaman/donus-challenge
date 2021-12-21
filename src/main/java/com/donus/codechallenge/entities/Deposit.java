@@ -3,53 +3,63 @@ package com.donus.codechallenge.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-public class Transaction implements Serializable{
+public class Deposit implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
- 
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private double amountDeposit;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "account_cpf")
 	private Account account;
 
 	
-	public Transaction() {
+	public Deposit() {
 		super();
 	}
 
-	public Transaction(Long id, Account conta) {
+	public Deposit(Long id, double amountDeposit, Account account) {
 		super();
 		this.id = id;
-		this.account = conta;
-	}
-
-	@JsonIgnore
-	public Account getConta() {
-		return account;
-	}
-
-	public void setConta(Account conta) {
-		this.account = conta;
+		this.amountDeposit = amountDeposit;
+		this.account = account;
 	}
 
 	public Long getId() {
-		return id; 
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public double getAmountDeposit() {
+		return amountDeposit;
+	}
+
+	public void setAmountDeposit(double amountDeposit) {
+		this.amountDeposit = amountDeposit;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	@Override
@@ -65,8 +75,9 @@ public class Transaction implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transaction other = (Transaction) obj;
+		Deposit other = (Deposit) obj;
 		return Objects.equals(id, other.id);
 	}
+
 	
 }

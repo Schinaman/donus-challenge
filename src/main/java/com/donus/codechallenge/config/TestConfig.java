@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.donus.codechallenge.entities.Account;
+import com.donus.codechallenge.entities.Deposit;
 import com.donus.codechallenge.entities.PF;
 import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.repositories.AccountRepository;
+import com.donus.codechallenge.repositories.DepositRepository;
 import com.donus.codechallenge.repositories.PFRepository;
 import com.donus.codechallenge.repositories.TransactionRepository;
 
@@ -24,6 +26,9 @@ public class TestConfig implements CommandLineRunner{
 	private PFRepository pfRepository;
 	@Autowired
 	private TransactionRepository transactionRepository;
+	@Autowired
+	private DepositRepository dRepo;
+	
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -39,6 +44,10 @@ public class TestConfig implements CommandLineRunner{
 		Transaction tr1 = new Transaction(null, cc2);
 		Transaction tr2 = new Transaction(null, cc2);
 		transactionRepository.saveAll(Arrays.asList(tr1,tr2));
+		
+		Deposit dp1 = new Deposit(null, 1.000, cc2);
+		Deposit dp2 = new Deposit (null, 1000.00, cc2);
+		dRepo.saveAll(Arrays.asList(dp1,dp2));
 		
 	}
 	

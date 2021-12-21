@@ -19,7 +19,7 @@ import com.donus.codechallenge.repositories.AccountRepository;
 import com.donus.codechallenge.repositories.TransactionRepository;
 
 @Service
-public class ContaService {
+public class AccountService {
 
 	@Autowired
 	private AccountRepository repository;

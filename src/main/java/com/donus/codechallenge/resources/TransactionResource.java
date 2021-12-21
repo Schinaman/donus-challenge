@@ -17,7 +17,7 @@ import com.donus.codechallenge.entities.Account;
 import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.repositories.AccountRepository;
 import com.donus.codechallenge.repositories.TransactionRepository;
-import com.donus.codechallenge.services.ContaService;
+import com.donus.codechallenge.services.AccountService;
 import com.donus.codechallenge.services.TransacaoService;
 
 @RestController
@@ -27,7 +27,7 @@ public class TransactionResource {
 	@Autowired
 	private TransacaoService service;
 	@Autowired
-	private ContaService contaService;
+	private AccountService contaService;
 
 	@Autowired
 	private TransactionRepository repository;
