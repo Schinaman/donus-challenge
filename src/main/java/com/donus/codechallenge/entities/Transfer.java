@@ -14,60 +14,73 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name= "tb_deposit")
-public class Deposit implements Serializable{
+@Table(name= "tb_transfer")
+public class Transfer implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private double amountDeposit;
+	private double amountTransfer;
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "account_cpf")
-	private Account account;
+	@JoinColumn(name = "account_from")
+	private Account accountFrom;
 
+	//private Account accountTo; //representative cpf field
+	private String accountTo;
 	
-	public Deposit() {
+	public Transfer() {
 		super();
 	}
 
-	public Deposit(Long id, double amountDeposit, Account account) {
+
+	public Transfer(Long id, double amountTransfer, Account accountFrom, String accountTo) {
 		super();
 		this.id = id;
-		this.amountDeposit = amountDeposit;
-		this.account = account;
+		this.amountTransfer = amountTransfer;
+		this.accountFrom = accountFrom;
+		this.accountTo = accountTo;
 	}
+
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
+
 		this.id = id;
 	}
+	
+	public double getAmountTransfer() {
+		return amountTransfer;
+	}
+	public void setAmountTransfer(double amountTransfer) {
 
-	public double getAmountDeposit() {
-		return amountDeposit;
+		this.amountTransfer = amountTransfer;
+	}
+	
+	public Account getAccountFrom() {
+		return accountFrom;
+	}
+	public void setAccountFrom(Account accountFrom) {
+		this.accountFrom = accountFrom;
+	}
+	
+	public String getAccountTo() {
+		return accountTo;
+	}
+	public void setAccountTo(String accountTo) {
+		this.accountTo = accountTo;
 	}
 
-	public void setAmountDeposit(double amountDeposit) {
-		this.amountDeposit = amountDeposit;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -77,9 +90,11 @@ public class Deposit implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Deposit other = (Deposit) obj;
+		Transfer other = (Transfer) obj;
 		return Objects.equals(id, other.id);
 	}
 
+	
+	
 	
 }

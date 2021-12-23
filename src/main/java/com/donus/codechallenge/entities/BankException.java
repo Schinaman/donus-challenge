@@ -19,7 +19,6 @@ public class BankException  {
 	public String getMessage() {
 		return message;
 	}
-
 	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}

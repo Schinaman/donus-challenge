@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.donus.codechallenge.entities.Account;
+import com.donus.codechallenge.entities.BankRequestException;
 import com.donus.codechallenge.entities.Deposit;
 import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.repositories.AccountRepository;
@@ -30,17 +31,16 @@ public class DepositService {
 	}
 	
 	public Deposit insert(Deposit obj) {
+		
+		
+		if (obj.getAmountDeposit() < 0) {
+			throw new BankRequestException("Deposite uma quantia positiva"); 
+		}
+		
 		Optional<Account> acc = acRepository.findById(obj.getAccount().getCPF());
 		acc.get().Deposita(obj.getAmountDeposit());
 		acRepository.save(acc.get());
 		return repository.save(obj);
 	}
 
-//	
-//	public Transaction deposita(Transaction obj) {
-//		obj.deposita(obj.getConta(), obj.getValor());
-//		return obj;
-//	}
-
-	
 }

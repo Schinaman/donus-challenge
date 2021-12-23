@@ -14,7 +14,7 @@ public class BankExceptionHandler {
 		public ResponseEntity<Object> handleException(BankRequestException e){
 			HttpStatus forbidden = HttpStatus.FORBIDDEN;
 			
-			BankException dnaException = new BankException(e.getMessage(),forbidden);
-			return new ResponseEntity<>(dnaException,forbidden);
+			BankException bankException = new BankException(e.getMessage(),forbidden);
+			return new ResponseEntity<>(bankException,forbidden);
 		}
 }
