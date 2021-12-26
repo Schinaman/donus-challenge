@@ -1,4 +1,4 @@
-package com.donus.codechallenge.entities;
+package com.donus.codechallenge.services.exceptions;
 
 
 

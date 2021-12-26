@@ -1,4 +1,4 @@
-package com.donus.codechallenge.entities;
+package com.donus.codechallenge.resources.exceptions;
 
 
 
@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.donus.codechallenge.services.exceptions.BankRequestException;
 
 @ControllerAdvice
 public class BankExceptionHandler {

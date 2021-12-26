@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.donus.codechallenge.entities.BankRequestException;
 import com.donus.codechallenge.entities.PF;
 import com.donus.codechallenge.repositories.PFRepository;
+import com.donus.codechallenge.services.exceptions.BankRequestException;
 
 @Service
 public class PFService {
@@ -22,7 +22,7 @@ public class PFService {
 	
 	public PF findById(String id) {
 		Optional<PF> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new BankRequestException("Objeto não encontrado"));
 	}
 	
 	public PF insert(PF obj) {

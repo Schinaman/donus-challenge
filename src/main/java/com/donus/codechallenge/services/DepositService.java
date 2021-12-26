@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.donus.codechallenge.entities.Account;
-import com.donus.codechallenge.entities.BankRequestException;
 import com.donus.codechallenge.entities.Deposit;
-import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.repositories.AccountRepository;
 import com.donus.codechallenge.repositories.DepositRepository;
+import com.donus.codechallenge.services.exceptions.BankRequestException;
 
 @Service
 public class DepositService {
@@ -37,8 +36,12 @@ public class DepositService {
 			throw new BankRequestException("Deposite uma quantia positiva"); 
 		}
 		
+		if (obj.getAmountDeposit() > 2000.0) {
+			throw new BankRequestException("Não é permitido depositos acima de 2.000"); 
+		}
+		
 		Optional<Account> acc = acRepository.findById(obj.getAccount().getCPF());
-		acc.get().Deposita(obj.getAmountDeposit());
+		acc.get().deposita(obj.getAmountDeposit());
 		acRepository.save(acc.get());
 		return repository.save(obj);
 	}

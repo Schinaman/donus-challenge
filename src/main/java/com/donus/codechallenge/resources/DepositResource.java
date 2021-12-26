@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.donus.codechallenge.entities.Account;
 import com.donus.codechallenge.entities.Deposit;
-import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.services.DepositService;
 
 @RestController

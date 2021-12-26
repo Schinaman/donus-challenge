@@ -10,12 +10,10 @@ import org.springframework.context.annotation.Profile;
 import com.donus.codechallenge.entities.Account;
 import com.donus.codechallenge.entities.Deposit;
 import com.donus.codechallenge.entities.PF;
-import com.donus.codechallenge.entities.Transaction;
 import com.donus.codechallenge.entities.Transfer;
 import com.donus.codechallenge.repositories.AccountRepository;
 import com.donus.codechallenge.repositories.DepositRepository;
 import com.donus.codechallenge.repositories.PFRepository;
-import com.donus.codechallenge.repositories.TransactionRepository;
 import com.donus.codechallenge.repositories.TransferRepository;
 
 @Configuration
@@ -26,8 +24,6 @@ public class TestConfig implements CommandLineRunner{
 	private AccountRepository contaRepository;
 	@Autowired
 	private PFRepository pfRepository;
-	@Autowired
-	private TransactionRepository transactionRepository;
 	@Autowired
 	private DepositRepository dRepo;
 	@Autowired

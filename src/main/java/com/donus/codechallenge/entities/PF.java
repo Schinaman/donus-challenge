@@ -21,7 +21,7 @@ public class PF implements Serializable {
 	
 	@Id
 	@Size(min = 11, max = 11)
-	private String CPF;
+	private String cPF;
 	
 	@NotNull(message = "Digite um nome valido")
 	private String fullName;
@@ -36,15 +36,15 @@ public class PF implements Serializable {
 	}	
 	public PF(String cPF, String fullName) {
 		super();
-		this.CPF = cPF;
+		this.cPF = cPF;
 		this.fullName = fullName;;
 	}
 	
 	public String getCPF() {
-		return CPF;
+		return cPF;
 }
 	public void setCPF(String cPF) {
-		CPF = cPF;
+		this.cPF = cPF;
 	}
 
 	public String getFullName() {
@@ -64,7 +64,7 @@ public class PF implements Serializable {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(CPF);
+		return Objects.hash(cPF);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -75,7 +75,7 @@ public class PF implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PF other = (PF) obj;
-		return Objects.equals(CPF, other.CPF);
+		return Objects.equals(cPF, other.cPF);
 	}
 	
 	

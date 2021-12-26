@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.donus.codechallenge.entities.Account;
-import com.donus.codechallenge.entities.BankRequestException;
 import com.donus.codechallenge.entities.Transfer;
 import com.donus.codechallenge.repositories.AccountRepository;
 import com.donus.codechallenge.repositories.TransferRepository;
+import com.donus.codechallenge.services.exceptions.BankRequestException;
 
 @Service
 public class TransferService {
@@ -31,11 +31,11 @@ public class TransferService {
 		return obj.get();
 	}
 	
-	
+
 	public Transfer insert(Transfer obj) {
 		Optional<Account> accFrom = acRepository.findById(obj.getAccountFrom().getCPF());
 		Optional<Account> accTo = acRepository.findById(obj.getAccountTo());
-		accFrom.get().Transfere(accTo.get(), obj.getAmountTransfer());
+		accFrom.get().transfere(accTo.get(), obj.getAmountTransfer());
 		
 		if (obj.getAccountTo().length() != 11) {
 			throw new BankRequestException("CPF precisa ter 11 digitos");
@@ -45,6 +45,10 @@ public class TransferService {
 			if (letter < 48 || letter > 57) {
 				throw new BankRequestException("CPF só aceita caracteres numericos");
 			}
+		}
+		
+		if (obj.getAccountFrom().getCPF() == obj.getAccountTo()) {
+			throw new BankRequestException("Não é possível fazer transferência para a mesma conta");
 		}
 		
 		if (obj.getAmountTransfer() < 0) {
