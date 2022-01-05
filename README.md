@@ -12,7 +12,7 @@ Bellow there is a class diagram that represents the project:
 *With this account it is possible to make transfers to other accounts and deposit; <br>
 *Transactions only allow Transfer and Deposit methods;<bR>
 *Negative amounts on accounts are not allowed;<br>
-*Deposit transaction cannot be greater than R$2,000;
+*Deposit transaction cannot be greater than R$2,000; <br>
 *Transfers between accounts are free and unlimited;
 
 
