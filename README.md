@@ -1,4 +1,4 @@
-# donus-challenge
+# Bank API
 
 ## Overview
 The project runs through an RESTful API and create some essential functions related to managing bank accounts in Java <br>
